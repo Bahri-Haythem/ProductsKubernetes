@@ -24,10 +24,11 @@ stages:
       displayName: Build and push an image
       inputs:
         containerRegistry: 'dockerRegistry'
-        repository: 'haythembahri/mvc-app:v2.$(Build.BuildId)'
+        repository: 'haythembahri/mvc-app'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         #tags: '$(tag)'
+        tags: 'v2.$(Build.BuildId)'
     # - task: CopyFiles@2
     #   displayName: copy
     #   inputs:
