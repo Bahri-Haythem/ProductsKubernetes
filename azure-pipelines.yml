@@ -21,10 +21,26 @@ stages:
       vmImage: ubuntu-latest
     steps:
     - task: Docker@2
-      displayName: Build an image
+      displayName: Build and push an image
       inputs:
         containerRegistry: 'dockerRegistry'
-        repository: 'haythembahri/mvc-app'
+        repository: 'haythembahri/mvc-app:v2.$(Build.BuildId)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: '$(tag)'
+    # - task: CopyFiles@2
+    #   displayName: copy
+    #   inputs:
+    #     Contents: |
+    #       mssql-config-map.yaml
+    #       mssql-pv.yaml
+    #       mssql-secret.yaml
+    #       products-store-mssql-deployment.yaml
+    #       products-store-mvc-deployment.yaml
+    #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    #     ArtifactName: 'drop'
+    #     publishLocation: 'Container'
+        
