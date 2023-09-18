@@ -24,7 +24,6 @@ stages:
       displayName: Build an image
       inputs:
         repository: 'haythembahri/mvc-app'
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/MvcApp/Dockerfile'
-        tags: |
-          $(tag)
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
