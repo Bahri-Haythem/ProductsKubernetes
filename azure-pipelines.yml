@@ -27,7 +27,7 @@ stages:
         repository: 'haythembahri/mvc-app:v2.$(Build.BuildId)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
-        tags: '$(tag)'
+        #tags: '$(tag)'
     # - task: CopyFiles@2
     #   displayName: copy
     #   inputs:
