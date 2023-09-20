@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mvc
-        image: haythembahri/mvc-app:1.0
+        image: haythembahri/mvc-app:2.#{tag}#
         ports:
         - containerPort: 80
         env:
