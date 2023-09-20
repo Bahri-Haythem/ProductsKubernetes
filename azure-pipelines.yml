@@ -28,19 +28,26 @@ stages:
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: '2.$(tag)'
-    # - task: CopyFiles@2
-    #   displayName: copy
-    #   inputs:
-    #     Contents: |
-    #       mssql-config-map.yaml
-    #       mssql-pv.yaml
-    #       mssql-secret.yaml
-    #       products-store-mssql-deployment.yaml
-    #       products-store-mvc-deployment.yaml
-    #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    # - task: PublishBuildArtifacts@1
-    #   inputs:
-    #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    #     ArtifactName: 'drop'
-    #     publishLocation: 'Container'
+    - task: replacetokens@5
+      displayName: 'Replace tokens'
+      inputs:
+        targetFiles: "products-store-mvc-deployment.yaml"
+        rootDirectory: "products-store-mvc-deployment.yaml"
+        tokenPrefix: "#{"
+        tokenSuffix: "}#"
+    - task: CopyFiles@2
+      displayName: copy
+      inputs:
+        Contents: |
+          mssql-config-map.yaml
+          mssql-pv.yaml
+          mssql-secret.yaml
+          products-store-mssql-deployment.yaml
+          products-store-mvc-deployment.yaml
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
         
