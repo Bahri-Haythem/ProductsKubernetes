@@ -32,7 +32,6 @@ stages:
       displayName: 'Replace tokens'
       inputs:
         targetFiles: "products-store-mvc-deployment.yaml"
-        rootDirectory: "products-store-mvc-deployment.yaml"
         tokenPrefix: "#{"
         tokenSuffix: "}#"
     - task: CopyFiles@2
